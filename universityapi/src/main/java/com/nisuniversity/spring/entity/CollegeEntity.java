@@ -39,7 +39,7 @@ public class CollegeEntity {
 	private String phoneNumber;
 	
 	@JsonIgnore
-	@ManyToMany(mappedBy="colleges", cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="colleges", fetch=FetchType.EAGER)
     private Collection<StudentEntity> students = new ArrayList<>();
 	
 	public Long getId() {

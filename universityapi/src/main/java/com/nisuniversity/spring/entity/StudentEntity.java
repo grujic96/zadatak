@@ -60,7 +60,7 @@ public class StudentEntity implements Serializable {
 	private String phoneNumber;
 	
 	@JsonIgnore
-	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER)
     Collection<CollegeEntity> colleges = new ArrayList<>();
 	
 	public Long getId() {
