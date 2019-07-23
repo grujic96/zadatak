@@ -1,5 +1,7 @@
 package com.nisuniversity.spring.configuration;
 
+import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,8 +26,8 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
 
         auth.inMemoryAuthentication()
         	.withUser("test")
-        	.password("testpwd")
-        	.authorities("USER");
+        	.password(Base64.getEncoder().encodeToString("password".getBytes()))
+        	.roles("USER");
 
     }
 
@@ -35,23 +37,21 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
 
         http
         .authorizeRequests().antMatchers("/").permitAll().and()
-    	.authorizeRequests().antMatchers("/api/students").authenticated().and()
-//    	.authorizeRequests().antMatchers("/api/**").authenticated().and()
+    	.authorizeRequests().antMatchers("/api/college/multiplecollegestudents").authenticated().and()
 //        .formLogin().loginProcessingUrl("/login").and()
         .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
         .and().csrf().disable();
       
     }
-    
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-    }
+//    
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return NoOpPasswordEncoder.getInstance();
+//    }
     /*@Bean
     public UserDetailsService userDetailsService() {
         //ok for demo
         User.UserBuilder users = User.withDefaultPasswordEncoder();
-
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(users.username("user").password("password").roles("USER").build());
         manager.createUser(users.username("admin").password("password").roles("USER", "ADMIN").build());
