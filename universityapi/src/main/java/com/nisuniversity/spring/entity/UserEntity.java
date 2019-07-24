@@ -2,6 +2,8 @@ package com.nisuniversity.spring.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,8 +23,8 @@ public class UserEntity {
 	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "role")
-	String role;
+	@Enumerated(EnumType.STRING)
+	Role role;
 	
 	@Column(name="enabled")	
 	private int enabled;
@@ -51,11 +53,11 @@ public class UserEntity {
 		this.password = password;
 	}
 
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 	

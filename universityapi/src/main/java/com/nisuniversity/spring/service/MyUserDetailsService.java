@@ -18,7 +18,7 @@ public class MyUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String userName)
 			throws UsernameNotFoundException {
 		UserEntity activeUserInfo = userDAO.getActiveUser(userName);
-		GrantedAuthority authority = new SimpleGrantedAuthority(activeUserInfo.getRole());
+		GrantedAuthority authority = new SimpleGrantedAuthority(activeUserInfo.getRole().toString());
 		UserDetails userDetails = (UserDetails)new User(activeUserInfo.getUsername(),
 				activeUserInfo.getPassword(), Arrays.asList(authority));
 		return userDetails;

@@ -2,7 +2,6 @@ package com.nisuniversity.spring.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import com.nisuniversity.spring.entity.CollegeEntity;
 import com.nisuniversity.spring.entity.StudentEntity;

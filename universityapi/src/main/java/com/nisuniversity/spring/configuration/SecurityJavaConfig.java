@@ -1,6 +1,5 @@
 package com.nisuniversity.spring.configuration;
 
-import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

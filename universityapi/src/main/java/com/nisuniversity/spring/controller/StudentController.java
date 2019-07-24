@@ -2,10 +2,10 @@ package com.nisuniversity.spring.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +19,7 @@ import com.nisuniversity.spring.entity.CollegeEntity;
 import com.nisuniversity.spring.entity.StudentEntity;
 import com.nisuniversity.spring.service.StudentService;
 
+@Secured({"ROLE_ADMIN"})
 @CrossOrigin("*")
 @RestController
 public class StudentController {
