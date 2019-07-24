@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,14 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nisuniversity.spring.entity.CollegeEntity;
 import com.nisuniversity.spring.entity.StudentEntity;
 import com.nisuniversity.spring.service.CollegeService;
-import com.nisuniversity.spring.service.StudentService;
 
 @CrossOrigin("*")
 @RestController
 public class CollegeController {
-	
-	@Autowired
-	private StudentService studentService;
 	
 	@Autowired
 	private CollegeService collegeService;
@@ -31,6 +28,7 @@ public class CollegeController {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/api/college/{id}")
 	public ResponseEntity<CollegeEntity> get(@PathVariable("id") long id){
 		CollegeEntity college = collegeService.getById(id);
