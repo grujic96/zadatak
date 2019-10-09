@@ -11,7 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class CollegeEntity {
@@ -33,7 +35,7 @@ public class CollegeEntity {
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	
-	@JsonIgnore
+	@JsonManagedReference
 	@ManyToMany(mappedBy="colleges", fetch=FetchType.EAGER)
     private Collection<StudentEntity> students = new ArrayList<>();
 	

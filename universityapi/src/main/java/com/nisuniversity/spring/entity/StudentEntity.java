@@ -13,8 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class StudentEntity implements Serializable {
@@ -51,7 +51,7 @@ public class StudentEntity implements Serializable {
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToMany(fetch=FetchType.EAGER)
     Collection<CollegeEntity> colleges = new ArrayList<>();
 	
@@ -126,12 +126,16 @@ public class StudentEntity implements Serializable {
 	public void setColleges(Collection<CollegeEntity> colleges) {
 		this.colleges = colleges;
 	}
+	
+	public void addCollege(CollegeEntity collegeEntity) {
+		
+	}
 
 	@Override
 	public String toString() {
 		return "StudentEntity [id=" + id + ", name=" + name + ", lastname=" + lastname + ", jmbg=" + jmbg
 				+ ", birthDate=" + birthDate + ", address=" + address + ", email=" + email + ", phoneNumber="
-				+ phoneNumber + "]";
+				+ phoneNumber + "]" + "COLLEGES" + colleges.toString();
 	}
 	
 }

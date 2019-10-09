@@ -26,3 +26,6 @@ insert into studententity_collegeentity(students_student_id, colleges_college_id
 
 
 
+INSERT INTO userentity (username, password, role,enabled) VALUES
+	('admin', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'ROLE_ADMIN', 1),
+	('aleksandar', '$2a$10$QifQnP.XqXDW0Lc4hSqEg.GhTqZHoN2Y52/hoWr4I5ePxK7D2Pi8q', 'ROLE_USER', 1);

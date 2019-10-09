@@ -17,15 +17,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nisuniversity.spring.entity.CollegeEntity;
 import com.nisuniversity.spring.entity.StudentEntity;
+import com.nisuniversity.spring.service.CollegeService;
 import com.nisuniversity.spring.service.StudentService;
 
-@Secured({"ROLE_ADMIN"})
 @CrossOrigin("*")
 @RestController
 public class StudentController {
 	
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired
+	private CollegeService collegeService;
 	
 	//get all students
 	@GetMapping("/api/students")
@@ -43,10 +46,20 @@ public class StudentController {
 	//saving student
 	@PostMapping("/api/student")
 	public ResponseEntity<?> saveStudent(@RequestBody StudentEntity student){
-		System.out.println(student.getBirthDate());
 		long id = studentService.saveStudent(student);
 		return ResponseEntity.ok().body("Student created with id: " + id);
 	}
+	
+	//saving student
+		@PostMapping("/api/student/college/{id}")
+		public ResponseEntity<?> saveStudentWithCollegeId(@RequestBody StudentEntity student, @PathVariable("id") long collegeId){
+			System.out.println("USOOOOO");
+			List<CollegeEntity> colleges = new ArrayList<CollegeEntity>();
+			colleges.add(collegeService.getById(collegeId));
+			student.setColleges(colleges);
+			long id = studentService.saveStudent(student);
+			return ResponseEntity.ok().body("Student created with id: " + id);
+		}
 	
 	@GetMapping("/api/student/{id}")
 	public ResponseEntity<StudentEntity> getStudent(@PathVariable("id") long id){

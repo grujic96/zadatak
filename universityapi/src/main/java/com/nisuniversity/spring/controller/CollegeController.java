@@ -22,14 +22,12 @@ public class CollegeController {
 	private CollegeService collegeService;
 	
 	//List of colleges sorted by name
-	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@GetMapping("/api/colleges")
 	public ResponseEntity<Collection<CollegeEntity>> getAllCollegesList(){
 		Collection<CollegeEntity> list = collegeService.getAllCollegesList();
 		return ResponseEntity.ok().body(list);
 	}
 	
-	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/api/college/{id}")
 	public ResponseEntity<CollegeEntity> get(@PathVariable("id") long id){
 		CollegeEntity college = collegeService.getById(id);
@@ -38,7 +36,6 @@ public class CollegeController {
 	
 	
 	//List of students of a certain college sorted by name and lastname
-	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/api/college/{id}/students")
 	public ResponseEntity<Collection<StudentEntity>> getCollegesByStudentId(@PathVariable("id") long id){
 		Collection<StudentEntity> list = collegeService.getStudentsByCollegeId(id);
@@ -46,10 +43,10 @@ public class CollegeController {
 	}
 	
 	//List of students of multiple colleges
-	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/api/college/multiplecollegestudents")
 	public ResponseEntity<Collection<StudentEntity>> getStudentsOfMultipleColleges(){
 		Collection<StudentEntity> list = collegeService.getStudentsOfMultipleColleges();
+		System.out.println(list);
 		return ResponseEntity.ok().body(list);
 	}
 	
