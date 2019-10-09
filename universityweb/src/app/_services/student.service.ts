@@ -33,6 +33,16 @@ export class StudentService{
 
     }
 
+    addStudentWithCollegeId(student: Student, collegeId : string){
+        let body = JSON.stringify(student);
+        console.log(body);
+        console.log(JSON.parse(JSON.stringify(student)));
+        let str = 'http://localhost:8080/universityapi/api/student/college/' + collegeId;
+        console.log(str);
+        return this.http.post(str, JSON.parse(JSON.stringify(student)));
+
+    }
+
     deleteStudent(studentId: string) {
         return this.http.delete('http://localhost:8080/universityapi/api/student/' + studentId);
     }

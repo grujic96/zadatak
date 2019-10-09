@@ -14,7 +14,7 @@ import { CollegeService } from '../_services/college.service';
 })
 export class StudentComponent implements OnInit {
 colleges: College[];
-college = new College();
+college :College;
 students: Student[];
 student = new Student();
 date: NgbDateStruct;
@@ -24,11 +24,7 @@ date: NgbDateStruct;
   }
 
   ngOnInit() {
-    if(this.college.id === null){
-      this.getAllStudents();
-    } else {
-      this.getStudentsByCollegeId('1');
-    }
+    this.getAllStudents();
     this.getAllColleges();
     
   }
@@ -48,14 +44,26 @@ date: NgbDateStruct;
     .subscribe((studentsData) => {this.students = studentsData, console.log(studentsData)});
 
   }
-  addStudent(): void{
+  addStudent(college: College): void{
     this.student.birthDate = this.parserFormatter.format(this.date);
-    this.studentService.addStudent(this.student)
-    .subscribe((response) => {console.log(response)}, (error) => {
-      console.log(error);
-      this.reset();
-      this.getAllStudents();
-    });
+    console.log("COLLEGEEE");
+    console.log(college);
+    if(college != null){
+      console.log("USOOOOOOOOOOOOOOOOO")
+      this.studentService.addStudentWithCollegeId(this.student,college.id).subscribe((response) => {console.log(response)}, (error) => {
+        console.log(error);
+        this.reset();
+        this.getStudentsByCollegeId(college.id);
+      });
+      
+    } else{
+      this.studentService.addStudent(this.student)
+      .subscribe((response) => {console.log(response)}, (error) => {
+        console.log(error);
+        this.reset();
+        this.getAllStudents();
+      });
+    }
   }
 
   private reset(){
@@ -93,12 +101,17 @@ date: NgbDateStruct;
 
   onChange(newValue) {
     console.log(newValue);
+    if(newValue==="null"){
+      this.getAllStudents();
+    } else{
     this.collegeService.getCollegeById(newValue)
     .subscribe((collegeData) => {this.college = collegeData; (error) =>{
       console.log(error);
     }
   });
     this.getStudentsByCollegeId(newValue);
+    this.reset();
   }
+}
 
 }
