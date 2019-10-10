@@ -1,51 +1,15 @@
-<div class="container">
+
+<div>
+<div>   
+        &nbsp;<Label>Faculty&nbsp; </Label>
         <select id="college" name="college" (ngModel)="college" (change)="onChange($event.target.value)">
             <option [value]="null"></option>
             <option *ngFor="let college of colleges" [value]="college.id" >{{college.name}}</option>
         </select>
-    <form class="form-horizontal">
-        <input type = "hidden" name = "student.id" />
-        <div class="form-group">
-            <label class="control-label col-sm-2">Name</label>
-            <div class="col-sm-8"><input type = "text" [(ngModel)] = "student.name" name ="name"/><br/></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2">Lastname</label>
-            <div class="col-sm-8"><input type = "text" [(ngModel)] = "student.lastname" name ="lastname"/><br/></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2">JMBG</label>
-            <div class="col-sm-8"><input type = "text" [(ngModel)] = "student.jmbg" name ="jmbg"/><br/></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2">BirthDate</label>
-            <div class="col-sm-8"><input placeholder="yyyy-mm-dd" [(ngModel)]="date" name="date" (focus)="issuedDate.toggle()" ngbDatepicker [firstDayOfWeek]="7" #issuedDate="ngbDatepicker" [minDate]="{year: 1900, month: 1, day: 1}" >
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="oi oi-calendar" (click)="issuedDate.toggle()" title="Open Calendar" aria-hidden="true" style="cursor: pointer"></span>
-                    </div>
-                </div><br/></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2">Address</label>
-            <div class="col-sm-8"><input type = "text" [(ngModel)] = "student.address" name ="address"/><br/></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2">E-Mail</label>
-            <div class="col-sm-8"><input type = "text" [(ngModel)] = "student.email" name ="email"/><br/></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2">Phone Number</label>
-            <div class="col-sm-8"><input type = "text" [(ngModel)] = "student.phoneNumber" name ="phoneNumber"/><br/></div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-8">
-                <button (click) = "addStudent(college)" class="btn btn-primary">Add Student</button>
-            </div>
-        </div>
-    </form>
+    
 
 </div>
+<br>
 
 <div>
     <table class = "table table-striped table-bordered">
@@ -71,3 +35,48 @@
         </tr>    
     </table>
 </div>
+<div>
+        <form class="form-horizontal">
+                <input type = "hidden" name = "student.id" />
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Name</label>
+                    <div class="col-sm-8"><input type = "text" [(ngModel)] = "student.name" name ="name"/><br/></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Lastname</label>
+                    <div class="col-sm-8"><input type = "text" [(ngModel)] = "student.lastname" name ="lastname"/><br/></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">JMBG</label>
+                    <div class="col-sm-8"><input type = "text" [(ngModel)] = "student.jmbg" name ="jmbg"/><br/></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">BirthDate</label>
+                    <div class="col-sm-8"><input placeholder="yyyy-mm-dd" [(ngModel)]="date" name="date" (focus)="issuedDate.toggle()" ngbDatepicker [firstDayOfWeek]="7" #issuedDate="ngbDatepicker" [minDate]="{year: 1900, month: 1, day: 1}" >
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="oi oi-calendar" (click)="issuedDate.toggle()" title="Open Calendar" aria-hidden="true" style="cursor: pointer"></span>
+                            </div>
+                        </div><br/></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Address</label>
+                    <div class="col-sm-8"><input type = "text" [(ngModel)] = "student.address" name ="address"/><br/></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">E-Mail</label>
+                    <div class="col-sm-8"><input type = "text" [(ngModel)] = "student.email" name ="email"/><br/></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Phone Number</label>
+                    <div class="col-sm-8"><input type = "text" [(ngModel)] = "student.phoneNumber" name ="phoneNumber"/><br/></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8">
+                        <button (click) = "addStudent(college)" class="btn btn-primary">Add Student</button>
+                    </div>
+                </div>
+            </form>
+</div>
+</div>
+<app-add-modal-app *ngIf="showModal"></app-add-modal-app>

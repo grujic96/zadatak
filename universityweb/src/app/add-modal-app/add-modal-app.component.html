@@ -1,0 +1,51 @@
+<div class="modal" (click)="showModal">
+    <div class = "card">
+            <div>
+                    <form class="form-horizontal">
+                            <input type = "hidden" name = "student.id" />
+                            <div class="form-group">
+                                <label for="name" class="control-label">Name</label>
+                                <input class="form-control" type = "text" [(ngModel)] = "student.name" name ="name"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname" class="control-label">Lastname</label>
+                                <input  class="form-control" type = "text" [(ngModel)] = "student.lastname" name ="lastname"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="jmbg" class="control-label">JMBG</label>
+                                <input  class="form-control" type = "text" [(ngModel)] = "student.jmbg" name ="jmbg"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="date" class="control-label">BirthDate</label>
+                                <div>
+                                <input placeholder="yyyy-mm-dd" [(ngModel)]="date" name="date" (focus)="issuedDate.toggle()" ngbDatepicker [firstDayOfWeek]="7" #issuedDate="ngbDatepicker" [minDate]="{year: 1900, month: 1, day: 1}" >
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="oi oi-calendar" (click)="issuedDate.toggle()" title="Open Calendar" aria-hidden="true" style="cursor: pointer"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address" class="control-label">Address</label>
+                                <input class="form-control" type = "text" [(ngModel)] = "student.address" name ="address"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="control-label ">E-Mail</label>
+                                <input class="form-control" type = "text" [(ngModel)] = "student.email" name ="email"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber" class="control-label">Phone Number</label>
+                                <input class="form-control" type = "text" [(ngModel)] = "student.phoneNumber" name ="phoneNumber"/>
+                            </div>
+                            <div class="form-group">
+                                <div class="button">
+                                    <button (click)="addStudent(college)" class="btn btn-primary">Add Student</button>
+                                </div>
+                            </div>
+                        </form>
+            </div>
+
+    </div>
+
+</div>

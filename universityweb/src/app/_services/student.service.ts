@@ -5,14 +5,15 @@ import { Student } from '../_models/student';
 import {map} from 'rxjs/operators';
 import { BlockingProxy } from 'blocking-proxy';
 import { College } from '../_models/college';
-
+import { AddModalAppComponent } from '../add-modal-app/add-modal-app.component';
 
 @Injectable()
 export class StudentService{
 
     constructor(private http: HttpClient){
-
+        
     }
+   
 
     getStudents(): Observable<Student[]>{
         return this.http.get('http://localhost:8080/universityapi/api/students/')
@@ -48,8 +49,11 @@ export class StudentService{
     }
 
     getStudentById(studentId: string): Observable<Student>{
+        
         return this.http.get('http://localhost:8080/universityapi/api/student/' + studentId)
         .pipe(map(res => <Student> res));
     }
+
+    
 
 }

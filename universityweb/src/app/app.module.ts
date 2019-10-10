@@ -9,12 +9,14 @@ import { StudentService } from './_services/student.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CollegeService } from './_services/college.service';
+import { AddModalAppComponent } from './add-modal-app/add-modal-app.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    StudentComponent
+    StudentComponent,
+    AddModalAppComponent
   ],
   imports: [
     NgbModule,

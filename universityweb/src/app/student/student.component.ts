@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Student} from '../_models/student';
 import { StudentService } from '../_services/student.service';
 import {NgbModal, NgbModalRef, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
@@ -18,10 +18,12 @@ college :College;
 students: Student[];
 student = new Student();
 date: NgbDateStruct;
+showModal: Boolean;
 
   constructor(private studentService: StudentService, private collegeService: CollegeService, private parserFormatter: NgbDateParserFormatter) { 
     
   }
+  
 
   ngOnInit() {
     this.getAllStudents();
@@ -89,8 +91,10 @@ date: NgbDateStruct;
       this.getAllStudents();
     });
   }
+  
 
   getStudentById(studentId: string){
+    this.showModal = true;
     this.studentService.getStudentById(studentId)
       .subscribe((studentData) => {this.student = studentData; this.date = this.parserFormatter.parse(this.student.birthDate); (error) =>{
         console.log(error);
